@@ -1,5 +1,5 @@
 #include <Arduino.h>
-
+#include <serial_mp3.h>
 
 
 void setup() {
@@ -10,7 +10,9 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Serial.println("Hola mundo");
+  reproducir();
+  Serial.println("La  suma de a + b es ");
+  Serial.println(c);
   digitalWrite(2, HIGH);
   delay(1000);
   digitalWrite(2, LOW);
