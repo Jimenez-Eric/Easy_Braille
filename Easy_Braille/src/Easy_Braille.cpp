@@ -19,13 +19,16 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+  //sendMP3Command('p');  // con esta funcion se puede mandar el parametro para reproducir sin meter nada al serial
+  //delay(1000);
+
   char c = ' ';
  
   // If there a char on Serial call sendMP3Command to sendCommand
   if ( Serial.available() )
   {
     c = Serial.read();
-    sendMP3Command(c);
+    sendMP3Command(c); 
   }
  
   // Check for the answer.
