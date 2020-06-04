@@ -7,61 +7,24 @@
 
 void volOrchangue();
 
-int nexButtonPressed = 0;
-int backButtonPressed = 0;
-
-int timePressed = 0;
-bool nexPressed = false;
-bool backPressed = false;
 
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(2, OUTPUT);
-
-  //Serial2.begin(9600);
   mp3.begin(9600);
-  delay(500);
  
   //sendCommand(CMD_SEL_DEV, DEV_TF);
-  delay(500);
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
-
-  //sendMP3Command('p');
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
-  //sendMP3Command('p');  // con esta funcion se puede mandar el parametro para reproducir sin meter nada al serial
-  //delay(1000);
-
-/*  char c = ' ';
- 
-  // If there a char on Serial call sendMP3Command to sendCommand
-  if ( Serial.available() )
-  {
-    c = Serial.read();
-    sendMP3Command(c); 
-  }
- 
-  // Check for the answer.
-  if (mp3.available())
-  {
-    Serial.println(decodeMP3Answer());
-  }
-  delay(100);*/
-
   volOrchangue();
   
-  
-  
-
-  
-
 }
 
 
@@ -69,6 +32,13 @@ void volOrchangue(){
 
   /*Esta funcion sirve para los botones de siguiente y volumen si se deja presionado por mas de 1s el volumen bajara o subira
   si es un solo pulso cambiara la letra hacia adelante o hacia atras, segun el boton presionado*/
+
+  int nexButtonPressed = 0;
+  int backButtonPressed = 0;
+  int timePressed = 0;
+  
+  bool nexPressed = false;
+  bool backPressed = false;
 
   nexButtonPressed = digitalRead(nexButton);
   backButtonPressed = digitalRead(backButton);
@@ -92,7 +62,6 @@ void volOrchangue(){
  
   }
   
-
   if (nexPressed | backPressed)
   {
     if (timePressed < 15)
@@ -110,9 +79,7 @@ void volOrchangue(){
         //Serial.println("Envie <");
         timePressed = 0;
         backPressed = false;
-      }
-      
-      
+      } 
     }
     else
     {
