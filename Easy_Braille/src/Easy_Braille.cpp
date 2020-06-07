@@ -42,7 +42,6 @@ void loop() {
 
 
 
-
 }
 //***************************************ENCENDER BOBINAS******************************************************
 void on_bob1(){
@@ -64,28 +63,28 @@ void on_bob3(){
   Serial.println("onbob3");
   digitalWrite(BIN1,LOW);
   digitalWrite(BIN2,HIGH);
-  delay(20);
+  delay(tiempo);
   digitalWrite(BIN2,LOW);
 }
 void on_bob4(){
   Serial.println("onbob4");
   digitalWrite(BIN3,LOW);
   digitalWrite(BIN4,HIGH);
-  delay(20);
+  delay(tiempo);
   digitalWrite(BIN4,LOW);
 }
 void on_bob5(){
   Serial.println("onbob5");
   digitalWrite(CIN1,LOW);
   digitalWrite(CIN2,HIGH);
-  delay(20);
+  delay(tiempo);
   digitalWrite(CIN2,LOW);
 }
 void on_bob6(){
   Serial.println("onbob6");
   digitalWrite(CIN3,LOW);
   digitalWrite(CIN4,HIGH);
-  delay(20);
+  delay(tiempo);
   digitalWrite(CIN4,LOW);
 }
 //***************************************APAGAR BOBINAS**********************************************
@@ -107,28 +106,28 @@ void off_bob3 (){
   Serial.println("offbob3");
   digitalWrite(BIN1,HIGH);
   digitalWrite(BIN2,LOW);
-  delay(80);
+  delay(tiempo);
   digitalWrite(BIN1,LOW);
 }
 void off_bob4 (){
   Serial.println("offbob4");
   digitalWrite(BIN3,HIGH);
   digitalWrite(BIN4,LOW);
-  delay(20);
+  delay(tiempo);
   digitalWrite(BIN3,LOW);
 }
 void off_bob5 (){
   Serial.println("offbob5");
   digitalWrite(CIN1,HIGH);
   digitalWrite(CIN2,LOW);
-  delay(20);
+  delay(tiempo);
   digitalWrite(CIN1,LOW);
 }
 void off_bob6 (){
   Serial.println("offbob6");
   digitalWrite(CIN3,HIGH);
   digitalWrite(CIN4,LOW);
-  delay(20);
+  delay(tiempo);
   digitalWrite(CIN3,LOW);
 }
 
