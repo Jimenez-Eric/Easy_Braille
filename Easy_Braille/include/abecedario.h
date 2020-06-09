@@ -1,796 +1,582 @@
 #include <Arduino.h>
 
+#define coil1_A 13
+#define coil1_B 4
+
+#define coil2_A 27
+#define coil2_B 26
+
+#define coil3_A 25
+#define coil3_B 33
+
+#define coil4_A 32
+#define coil4_B 23
+ 
+#define coil5_A 22
+#define coil5_B 21
+
+#define coil6_A 19
+#define coil6_B 18
+
 #define tiempo 40
 
-void cellA (){
+void letra_A (){
   
   Serial.println("A");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
+ 
 
   up_bob1 ();
   delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
-  
-    
+  off_coils();
+     
 }
-void cellB (){
+
+void letra_B (){
 
   Serial.println("B");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob3 ();
-  delay(tiempo);
+  delay(tiempo);  
+  off_coils();
+    
+}
+
+void letra_C (){
+
+  Serial.println("C");
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();  
+  delay(tiempo);
+  off_coils();
+  
+
+  up_bob1 ();
+  up_bob2 ();
+  delay(tiempo);  
+  off_coils();
    
 }
 
-void cellC (){
-
-  Serial.println("C");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
-
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
-
-  up_bob1 ();
-  up_bob2 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();   
-}
-void cellD (){
+void letra_D (){
 
   Serial.println("D");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
+ 
 
   up_bob1 ();
   up_bob2 ();
   up_bob4 ();
   delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
-    
+  off_coils();
+     
 }
-void cellE (){
+
+void letra_E (){
+
   Serial.println("E");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
+
+  down_coils ();
   delay(tiempo);
-
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
-
+  off_coils();
+ 
   up_bob1 ();
   up_bob4 ();
   delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  off_coils();
+ 
     
 }
-void cellF (){
+
+void letra_F (){
 
   Serial.println("F");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
+ 
 
   up_bob1 ();
   up_bob2 ();
   up_bob3 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
-    
+  delay(tiempo);  
+  off_coils();
+     
 }
-void cellG (){
+
+void letra_G (){
 
   Serial.println("G");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
+  
+  down_coils ();
   delay(tiempo);
-
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob3 ();
   up_bob4 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();   
+  delay(tiempo);  
+  off_coils();
 }
-void cellH (){
+
+void letra_H (){
+
    Serial.println("H");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
+  
+  down_coils ();
   delay(tiempo);
-
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  off_coils();
+ 
 
   up_bob1 ();
   up_bob3 ();
   up_bob4 ();
   delay(tiempo);
+  off_coils();
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellI (){
+
+void letra_I (){
+
      Serial.println("I");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob2 ();
   up_bob3 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo); 
+  off_coils();
+
 }
-void cellJ (){
+void letra_J (){
+
      Serial.println("J");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob2 ();
   up_bob3 ();
   up_bob4 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo);  
+  off_coils();
+   
 }
-void cellK (){
+
+void letra_K (){
+
     Serial.println("K");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob5 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();   
+  delay(tiempo);  
+  off_coils();
+    
 }
-void cellL (){
+
+void letra_L (){
+
      Serial.println("L");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob3 ();
   up_bob5 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
-    
+  delay(tiempo); 
+  off_coils();
+       
 }
-void cellM (){
+
+void letra_M (){
+
      Serial.println("M");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob5 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo);  
+  off_coils();
+ 
     
 }
-void cellN (){
+
+void letra_N (){
+
      Serial.println("N");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob4 ();
   up_bob5 ();
-  delay(tiempo);
+  delay(tiempo);  
+  off_coils();
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellO (){
-     Serial.println("O");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+void letra_O (){
+
+     Serial.println("O");
+
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob4 ();
   up_bob5 ();
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo);  
+  off_coils();
+ 
     
 }
-void cellP (){
+
+void letra_P (){
+
      Serial.println("P");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob3 ();
   up_bob5 ();
-
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo);  
+  off_coils();
+ 
 }
-void cellQ (){
+
+void letra_Q (){
+
      Serial.println("Q");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob3 ();
   up_bob4 ();
   up_bob5 ();
-  delay(tiempo);
+  delay(tiempo);  
+  off_coils();
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellR (){
+
+void letra_R (){
+
     Serial.println("R");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob3 ();
   up_bob4 ();
   up_bob5 ();
-
-  delay(tiempo);
+  delay(tiempo);  
+  off_coils();
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellS (){
+void letra_S (){
+
     Serial.println("S");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob2 ();
   up_bob3 ();
-  up_bob5 ();
-  
-
+  up_bob5 ();  
   delay(tiempo);
+  off_coils();
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellT (){
+void letra_T (){
+
     Serial.println("T");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob2 ();
   up_bob3 ();
   up_bob4 ();
   up_bob5 ();
-
   delay(tiempo);
+  off_coils();
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
-void cellU (){
+void letra_U (){
+
     Serial.println("U");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob5 ();
   up_bob6 ();
+  delay(tiempo);  
+  off_coils();
   
-
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
 
-void cellV (){
+void letra_V (){
+
     Serial.println("V");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob3 ();
   up_bob5 ();
   up_bob6 ();
-
   delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  off_coils();
+
 }
 
-void cellW (){
+void letra_W (){
+
     Serial.println("W");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob2 ();
   up_bob3 ();
   up_bob4 ();
   up_bob6 ();
+  delay(tiempo);  
+  off_coils();
 
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
 }
 
-void cellX (){
+void letra_X (){
+
     Serial.println("X");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob5 ();
   up_bob6 ();
-
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo);  
+  off_coils();
+ 
 }
 
-void cellY (){
+void letra_Y (){
+
     Serial.println("Y");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob2 ();
   up_bob4 ();
   up_bob5 ();
-
-  delay(tiempo);
-  
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  delay(tiempo)  
+  off_coils();
+ 
 }
 
-void cellZ (){
-    Serial.println("Z");
-  down_bob1 ();
-  down_bob2 ();
-  down_bob3 ();
-  down_bob4 ();
-  down_bob5 ();
-  down_bob6 ();
-  delay(tiempo);
+void letra_Z (){
 
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();
+    Serial.println("Z");
+
+  down_coils ();
+  delay(tiempo);
+  off_coils();
 
   up_bob1 ();
   up_bob4 ();
   up_bob5 ();
   up_bob6 ();
+  delay(tiempo);  
+  off_coils();
+ 
+}
 
-  delay(tiempo);
+//***************************************SUBIR BOBINAS******************************************************
+void up_bob1(){
+  Serial.println("upbob1");
+  digitalWrite(coil1_A,LOW);
+  digitalWrite(coil1_B,HIGH);
+    
+}
+
+void up_bob2(){
+  Serial.println("upbob2");
+  digitalWrite(coil2_A,LOW);
+  digitalWrite(coil2_B,HIGH);
   
-  off_bob1();
-  off_bob2();
-  off_bob3();
-  off_bob4();
-  off_bob5();
-  off_bob6();  
+  
+}
+
+void up_bob3(){
+  Serial.println("upbob3");
+  digitalWrite(coil3_A,LOW);
+  digitalWrite(coil3_B,HIGH);
+  
+  
+}
+
+void up_bob4(){
+  Serial.println("upbob4");
+  digitalWrite(coil4_A,LOW);
+  digitalWrite(coil4_B,HIGH);
+  
+}
+
+void up_bob5(){
+  Serial.println("upbob5");
+  digitalWrite(coil5_A,LOW);
+  digitalWrite(coil5_B,HIGH);
+
+}
+
+void up_bob6(){
+  Serial.println("upbob6");
+  digitalWrite(coil6_A,LOW);
+  digitalWrite(coil6_B,HIGH);
+   
+}
+
+//***************************************BAJAR BOBINA**********************************************
+void down_bob1 (){
+  Serial.println("downbob1");
+  digitalWrite(coil1_A,HIGH);
+  digitalWrite(coil1_B,LOW);
+
+}
+
+void down_bob2 (){
+  Serial.println("downbob2");
+  digitalWrite(coil2_A,HIGH);
+  digitalWrite(coil2_B,LOW);
+  
+}
+
+void down_bob3 (){
+  Serial.println("downbob3");
+  digitalWrite(coil3_A,HIGH);
+  digitalWrite(coil3_B,LOW);
+ 
+}
+
+void down_bob4 (){
+  Serial.println("downbob4");
+  digitalWrite(coil4_A,HIGH);
+  digitalWrite(coil4_B,LOW);
+  
+  
+}
+
+void down_bob5 (){
+  Serial.println("downbob5");
+  digitalWrite(coil5_A,HIGH);
+  digitalWrite(coil5_B,LOW);
+ 
+
+}
+
+void down_bob6 (){
+  Serial.println("downbob6");
+  digitalWrite(coil6_A,HIGH);
+  digitalWrite(coil6_B,LOW);
+  
+  
+}
+
+//******************************APAGAR BOBINAS**************************************
+void off_coils(){
+  Serial.println("off_coils");
+  digitalWrite(coil1_A,LOW);
+  digitalWrite(coil1_B,LOW);
+
+  digitalWrite(coil2_A,LOW);
+  digitalWrite(coil2_B,LOW);
+
+  digitalWrite(coil3_A,LOW);
+  digitalWrite(coil3_B,LOW);
+
+  digitalWrite(coil4_A,LOW);
+  digitalWrite(coil4_B,LOW);
+
+  digitalWrite(coil5_A,LOW);
+  digitalWrite(coil5_B,LOW);
+
+  digitalWrite(coil6_A,LOW);
+  digitalWrite(coil6_B,LOW);
+}
+
+////////////////////////////////////BAJAR TODAS LAS BOBINAS//////////////////////////////////
+
+void down_coils (){
+  Serial.println("down_coils");
+
+  digitalWrite(coil1_A,HIGH);
+  digitalWrite(coil1_B,LOW);
+
+  digitalWrite(coil2_A,HIGH);
+  digitalWrite(coil2_B,LOW);
+
+  digitalWrite(coil3_A,HIGH);
+  digitalWrite(coil3_B,LOW);
+
+  digitalWrite(coil4_A,HIGH);
+  digitalWrite(coil4_B,LOW);
+
+  digitalWrite(coil5_A,HIGH);
+  digitalWrite(coil5_B,LOW);
+
+  digitalWrite(coil6_A,HIGH);
+  digitalWrite(coil6_B,LOW);
 }
