@@ -17,18 +17,27 @@ void tutorMode();
 int enterButtonPressed = 1;
 int nexButtonPressed = 1;
 int backButtonPressed = 1;
+int timeEnterPressed = 0;
 int state = 1;
+int letraa = 1;
+char letraaa[1];
+String letra;
+bool enterPressed = false;
+bool soloModeEnter = false;
+bool tutorModeEnter = false;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   mp3.begin(9600);
  
-  //sendCommand(CMD_SEL_DEV, DEV_TF);
+  sendCommand(CMD_SEL_DEV, DEV_TF);
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
   pinMode(enterButton, INPUT_PULLUP);
+
+  sendMP3Command((char)letraa);
 }
 
 void loop() {
@@ -88,18 +97,31 @@ void volOrchangue(){
     {
       if (nexPressed)
       {
-        sendMP3Command('>');
+        letraa++;
+        letra = letraa;
+        letra.toCharArray(letraaa,1);
+        Serial.println(letraaa);
+        Serial.println(letra);
+        //sendMP3Command((char)letraa);
         //Serial.println("Envie >");
+        Serial.println(letraa);
+        Serial.println(letra);
         timePressed = 0;
         nexPressed = false;
       }
       else if (backPressed)
       {
-        sendMP3Command('<');
+        letraa--;
+        letra = letraa;
+        letra.toCharArray(letraaa,1);
+        Serial.println(letraaa);
+        Serial.println(letra);
+        //sendMP3Command('<');
         //Serial.println("Envie <");
         timePressed = 0;
         backPressed = false;
-      } 
+      }
+      //sendMP3Command(letraaa);
     }
     else
     {
@@ -124,64 +146,49 @@ void volOrchangue(){
 void menu()
 {
   static int contador3 = 0;
-  bool enterPressed = false;
+  soloModeEnter = false;
+  tutorModeEnter = false;
 
   readButtons();
-  while (1)
+  while (nexButtonPressed == 1 && backButtonPressed == 1)
   {
     readButtons();
-    if (millis() >= contador3)
+    if (millis() > contador3)
     {
       contador3 = millis() + 1000;
-      Serial.println("Estas en el menu de seleccion modo tutor presiona enter para entrar en este modo");
+      Serial.println("Estas en la selecion de modo tutor");
     }
-    if(enterButtonPressed == 0)
+    if (enterButtonPressed == 0)
     {
+      state = 2;
       enterPressed = true;
       break;
     }
-    if(nexButtonPressed == 0 || backButtonPressed == 0)
-    {
-      delay(20);
-      break;
-    }
   }
 
-  if(enterPressed)
-  {
-    state = 2;
-  }
-
+  delay(300);
   if (!enterPressed)
   {
-    while (1)
+    readButtons();
+    while (nexButtonPressed == 1 && backButtonPressed == 1)
     {
       readButtons();
-      if (millis() >= contador3)
+      if (millis() > contador3)
       {
         contador3 = millis() + 1000;
-        Serial.println("Estas en el menu de seleccion modo solo presiona enter para entrar en este modo");
+        Serial.println("Estas en la selecion de modo solo");
       }
       if (enterButtonPressed == 0)
       {
+        state = 3;
         enterPressed = true;
-        break;
-      }
-      if (nexButtonPressed == 0 || backButtonPressed == 0)
-      {
-        delay(20);
+        letraa = 1;
         break;
       }
     }
-    if (enterPressed)
-    {
-      state = 3;
-    }
+    delay(300);
   }
 }
-
-
-
 
 void nextBack(){
 
@@ -200,50 +207,57 @@ void readButtons()
 void tutorMode()
 {
   static int contador = 1000;
-  int timeEnterPressed = 0;
+  timeEnterPressed = 0;
 
+  readButtons();
+  while (enterButtonPressed == 0)
+  {
     readButtons();
-    while (enterButtonPressed == 0)
-    {
-      readButtons();
-      timeEnterPressed++;
-      Serial.println(timeEnterPressed);
-    }
+    timeEnterPressed++;
+    Serial.println(timeEnterPressed);
+  }
 
-    if (millis() >= contador)
-    {
-      contador = millis() + 1000;
-      Serial.println("Estoy en modo tutor presionaste enter");
-    }
-    if (timeEnterPressed >= 500)
-    {
-      timeEnterPressed = 0;
-      delay(20);
-      state = 1;
-    }
-
-  
+  if (!tutorModeEnter)
+  {
+    Serial.println("Estoy en modo tutor");
+    tutorModeEnter = true;
+  }
+  if (timeEnterPressed >= 500)
+  {
+    timeEnterPressed = 0;
+    state = 1;
+    enterPressed = false;
+    sendMP3Command('r');
+    delay(500);
+  }
 }
 
 void soloMode()
 {
   static int contador1 = 1000;
-  int timeEnterPressed = 0;
+  timeEnterPressed = 0;
+  readButtons();
+  while (enterButtonPressed == 0)
+  {
     readButtons();
-    while (enterButtonPressed == 0)
-    {
-      readButtons();
-      timeEnterPressed++;
-    }
-    if (millis() >= contador1)
-    {
-      contador1 = millis() + 1000;
-      Serial.println("Estoy en modo solo presionaste enter");
-    }
-    if (timeEnterPressed >= 500)
-    {
-      timeEnterPressed = 0;
-      delay(20);
-      state = 1;
-    }
+    timeEnterPressed++;
+    Serial.println(timeEnterPressed);
+  }
+  if (!soloModeEnter)
+  {
+    contador1 = millis() + 1000;
+    Serial.println("Estas en modo solo"); // aqui deberiamos de mandor un audio para confirmar que estamos en modo solo
+    soloModeEnter = true;
+  }
+  if (timeEnterPressed >= 500)
+  {
+    timeEnterPressed = 0;
+    state = 1;
+    enterPressed = false;
+    sendMP3Command('r');
+    delay(500);
+  }
+
+  volOrchangue();
+
 }
