@@ -580,3 +580,13 @@ void down_coils (){
   digitalWrite(coil6_A,HIGH);
   digitalWrite(coil6_B,LOW);
 }
+
+switch (letra)
+{
+case 1:
+  letra_A();
+  break;
+
+default:
+  break;
+}
