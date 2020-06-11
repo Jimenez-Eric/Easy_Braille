@@ -19,28 +19,27 @@ int nexButtonPressed = 1;
 int backButtonPressed = 1;
 int timeEnterPressed = 0;
 int state = 1;
-int letraa = 1;
-char letraaa[1];
-String letra;
+int letra = 1;
 bool enterPressed = false;
 bool soloModeEnter = false;
 bool tutorModeEnter = false;
 
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(9600);
   mp3.begin(9600);
- 
+
   sendCommand(CMD_SEL_DEV, DEV_TF);
+  sendMP3Command('r');
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
   pinMode(enterButton, INPUT_PULLUP);
-
-  sendMP3Command((char)letraa);
 }
 
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
 
   switch (state)
@@ -59,7 +58,6 @@ void loop() {
     break;
   }
 }
-
 
 void volOrchangue(){
 
@@ -97,37 +95,29 @@ void volOrchangue(){
     {
       if (nexPressed)
       {
-        letraa++;
-        letra = letraa;
-        letra.toCharArray(letraaa,1);
-        Serial.println(letraaa);
-        Serial.println(letra);
-        //sendMP3Command((char)letraa);
+        letra++;
+        sendMP3Command('>');
+        delay(500);
         //Serial.println("Envie >");
-        Serial.println(letraa);
-        Serial.println(letra);
         timePressed = 0;
         nexPressed = false;
       }
       else if (backPressed)
       {
-        letraa--;
-        letra = letraa;
-        letra.toCharArray(letraaa,1);
-        Serial.println(letraaa);
-        Serial.println(letra);
-        //sendMP3Command('<');
+        letra--;
+        sendMP3Command('<');
+        delay(500);
         //Serial.println("Envie <");
         timePressed = 0;
         backPressed = false;
       }
-      //sendMP3Command(letraaa);
     }
     else
     {
       if (nexPressed)
       {
         sendMP3Command('+');
+        delay(500);
         //Serial.println("Envie +");
         timePressed = 0;
         nexPressed = false;
@@ -135,6 +125,7 @@ void volOrchangue(){
       else if (backPressed)
       {
         sendMP3Command('-');
+        delay(500);
         //Serial.println("Envie -");
         timePressed = 0;
         backPressed = false;
@@ -182,7 +173,7 @@ void menu()
       {
         state = 3;
         enterPressed = true;
-        letraa = 1;
+        letra = 1;
         break;
       }
     }
@@ -248,6 +239,7 @@ void soloMode()
     contador1 = millis() + 1000;
     Serial.println("Estas en modo solo"); // aqui deberiamos de mandor un audio para confirmar que estamos en modo solo
     soloModeEnter = true;
+    sendMP3Command('1');
   }
   if (timeEnterPressed >= 500)
   {
