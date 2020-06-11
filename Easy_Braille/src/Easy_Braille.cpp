@@ -7,6 +7,8 @@
 #define enterButton 14 
 
 
+
+
 void menu();
 void volOrchangue();
 void nextBack();
@@ -54,6 +56,8 @@ void setup()
 
   pinMode(coil6_A, OUTPUT);
   pinMode(coil6_B, OUTPUT);
+
+  letra_A ();
 
 }
 
