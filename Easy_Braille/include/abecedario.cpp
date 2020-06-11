@@ -1,4 +1,8 @@
-#include "abecedario.h"
+#include "Abecedario.h"
+
+abecedario::abecedario(int coil1_A,int coil1_B, int coil2_A,int coil2_B, int coil3_A, int coil3_B, int coil4_A, int coil4_B,
+                int coil5_A, int coil5_B, int coil6_A, int coil6_B, int tiempo );
+
 
 extern int letra;
 
