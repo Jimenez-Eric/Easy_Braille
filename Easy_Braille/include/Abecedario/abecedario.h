@@ -4,12 +4,29 @@
 #define abecedario_h
 #include "Arduino.h"
 
+#define Pin_coil1_A 33
+#define Pin_coil1_B 32
+
+#define Pin_coil2_A 18
+#define Pin_coil2_B 4
+
+#define Pin_coil3_A 25
+#define Pin_coil3_B 26
+
+#define Pin_coil4_A 21
+#define Pin_coil4_B 19
+ 
+#define Pin_coil5_A 27
+#define Pin_coil5_B 13
+
+#define Pin_coil6_A 23
+#define Pin_coil6_B 22
+
 class abecedario
 {
 
 public:
-    abecedario(int Pin_coil1_A, int Pin_coil1_B, int Pin_coil2_A, int Pin_coil2_B, int Pin_coil3_A, int Pin_coil3_B, int Pin_coil4_A, int Pin_coil4_B,
-               int Pin_coil5_A, int Pin_coil5_B, int Pin_coil6_A, int Pin_coil6_B);
+    abecedario();
 
     void letraBraille();
 

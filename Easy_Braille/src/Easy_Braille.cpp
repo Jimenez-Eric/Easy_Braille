@@ -2,32 +2,14 @@
 #include "abecedario.h"
 //#include "serial_mp3.h"
 
-abecedario miabecedario(13,4,27,26,25,33,32,23,22,21,19,18);
+abecedario miabecedario;
 
 
 #define nexButton 5
 #define backButton 15
 #define enterButton 14 
 
-#define coil1_A 13
-#define coil1_B 4
 
-#define coil2_A 27
-#define coil2_B 26
-
-#define coil3_A 25
-#define coil3_B 33
-
-#define coil4_A 32
-#define coil4_B 23
- 
-#define coil5_A 22
-#define coil5_B 21
-
-#define coil6_A 19
-#define coil6_B 18
-
-#define tiempo 40
 
 
 void menu();
@@ -61,6 +43,8 @@ void setup()
   pinMode(backButton, INPUT_PULLUP);
   pinMode(enterButton, INPUT_PULLUP);
 
+  miabecedario.letra_A();
+  
 }
 
 void loop()

@@ -1,8 +1,11 @@
 #include "Arduino.h"
 #include "abecedario.h"
 
-abecedario::abecedario(int Pin_coil1_A, int Pin_coil1_B, int Pin_coil2_A, int Pin_coil2_B, int Pin_coil3_A, int Pin_coil3_B, int Pin_coil4_A, int Pin_coil4_B,
-                       int Pin_coil5_A, int Pin_coil5_B, int Pin_coil6_A, int Pin_coil6_B)
+
+
+//#define tiempo 40
+
+abecedario::abecedario()
 {
   pinMode(Pin_coil1_A, OUTPUT);
   pinMode(Pin_coil1_B, OUTPUT);
@@ -32,8 +35,8 @@ abecedario::abecedario(int Pin_coil1_A, int Pin_coil1_B, int Pin_coil2_A, int Pi
   
 }
 
-int letra;
-int _tiempo = 40;
+//int letra;
+int _tiempo = 50;
 
 
 
@@ -590,13 +593,13 @@ void abecedario::letra_Z()
 
 void abecedario::letraBraille()
 {
-  switch (letra)
-  {
-  case 1:
-    letra_A();
-    break;
+  //switch (letra)
+  //{
+  //case 1:
+    //letra_A();
+    //break;
 
-  default:
-    break;
-  }
+  //default:
+    //break;
+  //}
 }
