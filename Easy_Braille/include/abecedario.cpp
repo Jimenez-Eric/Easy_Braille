@@ -1,573 +1,594 @@
-#include "Abecedario.h"
+#include "Arduino.h"
+#include "abecedario.h"
 
-abecedario::abecedario(int coil1_A,int coil1_B, int coil2_A,int coil2_B, int coil3_A, int coil3_B, int coil4_A, int coil4_B,
-                int coil5_A, int coil5_B, int coil6_A, int coil6_B, int tiempo );
+abecedario::abecedario(int Pin_coil1_A, int Pin_coil1_B, int Pin_coil2_A, int Pin_coil2_B, int Pin_coil3_A, int Pin_coil3_B, int Pin_coil4_A, int Pin_coil4_B,
+                       int Pin_coil5_A, int Pin_coil5_B, int Pin_coil6_A, int Pin_coil6_B)
+{
+  pinMode(Pin_coil1_A, OUTPUT);
+  pinMode(Pin_coil1_B, OUTPUT);
+  pinMode(Pin_coil2_A, OUTPUT);
+  pinMode(Pin_coil2_B, OUTPUT);
+  pinMode(Pin_coil3_A, OUTPUT);
+  pinMode(Pin_coil3_B, OUTPUT);
+  pinMode(Pin_coil4_A, OUTPUT);
+  pinMode(Pin_coil4_B, OUTPUT);
+  pinMode(Pin_coil5_A, OUTPUT);
+  pinMode(Pin_coil5_B, OUTPUT);
+  pinMode(Pin_coil6_A, OUTPUT);
+  pinMode(Pin_coil6_B, OUTPUT);
 
-
-extern int letra;
-
-void letra_A (){
-  
-  //Serial.println("A");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
- 
-
-  up_bob1 ();
-  delay(tiempo);
-  off_coils();
-     
-}
-
-void letra_B (){
-
-  //Serial.println("B");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob3 ();
-  delay(tiempo);  
-  off_coils();
-    
-}
-
-void letra_C (){
-
-  //Serial.println("C");
-  
-  down_coils ();  
-  delay(tiempo);
-  off_coils();
-  
-
-  up_bob1 ();
-  up_bob2 ();
-  delay(tiempo);  
-  off_coils();
-   
-}
-
-void letra_D (){
-
-  //Serial.println("D");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
- 
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob4 ();
-  delay(tiempo);
-  off_coils();
-     
-}
-
-void letra_E (){
-
-  //Serial.println("E");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
- 
-  up_bob1 ();
-  up_bob4 ();
-  delay(tiempo);
-  off_coils();
- 
-    
-}
-
-void letra_F (){
-
-  //Serial.println("F");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
- 
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob3 ();
-  delay(tiempo);  
-  off_coils();
-     
-}
-
-void letra_G (){
-
-  //Serial.println("G");
-  
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob3 ();
-  up_bob4 ();
-  delay(tiempo);  
-  off_coils();
-}
-
-void letra_H (){
-
-  //Serial.println("H");
-  
-  down_coils ();
-  delay(tiempo);
-  off_coils();
- 
-
-  up_bob1 ();
-  up_bob3 ();
-  up_bob4 ();
-  delay(tiempo);
-  off_coils();
-
-}
-
-void letra_I (){
-
-  //Serial.println("I");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob2 ();
-  up_bob3 ();
-  delay(tiempo); 
-  off_coils();
-
-}
-void letra_J (){
-
-  //Serial.println("J");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob2 ();
-  up_bob3 ();
-  up_bob4 ();
-  delay(tiempo);  
-  off_coils();
-   
-}
-
-void letra_K (){
-
-  //Serial.println("K");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
-    
-}
-
-void letra_L (){
-
-  //Serial.println("L");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob3 ();
-  up_bob5 ();
-  delay(tiempo); 
-  off_coils();
-       
-}
-
-void letra_M (){
-
-  //Serial.println("M");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
- 
-    
-}
-
-void letra_N (){
-
-  //Serial.println("N");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
+  _coil1_A = Pin_coil1_A;
+  _coil1_B = Pin_coil1_B;
+  _coil2_A = Pin_coil2_A;
+  _coil2_B = Pin_coil2_B;
+  _coil3_A = Pin_coil3_A;
+  _coil3_B = Pin_coil3_B;
+  _coil4_A = Pin_coil4_A;
+  _coil4_B = Pin_coil4_B;
+  _coil5_A = Pin_coil5_A;
+  _coil5_B = Pin_coil5_B;
+  _coil6_A = Pin_coil6_A;
+  _coil6_B = Pin_coil6_B;
   
 }
 
-void letra_O (){
+int letra;
+int _tiempo = 40;
 
-  //Serial.println("O");
 
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
- 
-    
-}
-
-void letra_P (){
-
-  //Serial.println("P");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob3 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
- 
-}
-
-void letra_Q (){
-
-  //Serial.println("Q");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob3 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
-  
-}
-
-void letra_R (){
-
-  //Serial.println("R");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob3 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);  
-  off_coils();
-  
-}
-void letra_S (){
-
-  //Serial.println("S");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob2 ();
-  up_bob3 ();
-  up_bob5 ();  
-  delay(tiempo);
-  off_coils();
-  
-}
-void letra_T (){
-
-  //Serial.println("T");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob2 ();
-  up_bob3 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);
-  off_coils();
-  
-}
-void letra_U (){
-
-  //Serial.println("U");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob5 ();
-  up_bob6 ();
-  delay(tiempo);  
-  off_coils();
-  
-}
-
-void letra_V (){
-
-  //Serial.println("V");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob3 ();
-  up_bob5 ();
-  up_bob6 ();
-  delay(tiempo);
-  off_coils();
-
-}
-
-void letra_W (){
-
-  //Serial.println("W");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob2 ();
-  up_bob3 ();
-  up_bob4 ();
-  up_bob6 ();
-  delay(tiempo);  
-  off_coils();
-
-}
-
-void letra_X (){
-
-  //Serial.println("X");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob5 ();
-  up_bob6 ();
-  delay(tiempo);  
-  off_coils();
- 
-}
-
-void letra_Y (){
-
-  //Serial.println("Y");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob2 ();
-  up_bob4 ();
-  up_bob5 ();
-  delay(tiempo);
-  off_coils();
- 
-}
-
-void letra_Z (){
-
-  //Serial.println("Z");
-
-  down_coils ();
-  delay(tiempo);
-  off_coils();
-
-  up_bob1 ();
-  up_bob4 ();
-  up_bob5 ();
-  up_bob6 ();
-  delay(tiempo);  
-  off_coils();
- 
-}
 
 //***************************************SUBIR BOBINAS******************************************************
-void up_bob1(){
-  //Serial.println("upbob1");
-  digitalWrite(coil1_A,LOW);
-  digitalWrite(coil1_B,HIGH);
-    
+void abecedario::up_bob1()
+{
+  Serial.println("upbob1");
+  digitalWrite(_coil1_A, LOW);
+  digitalWrite(_coil1_B, HIGH);
 }
 
-void up_bob2(){
-  //Serial.println("upbob2");
-  digitalWrite(coil2_A,LOW);
-  digitalWrite(coil2_B,HIGH);
-  
-  
+void abecedario::up_bob2()
+{
+  Serial.println("upbob2");
+  digitalWrite(_coil2_A, LOW);
+  digitalWrite(_coil2_B, HIGH);
 }
 
-void up_bob3(){
-  //Serial.println("upbob3");
-  digitalWrite(coil3_A,LOW);
-  digitalWrite(coil3_B,HIGH);
-  
-  
+void abecedario::up_bob3()
+{
+  Serial.println("upbob3");
+  digitalWrite(_coil3_A, LOW);
+  digitalWrite(_coil3_B, HIGH);
 }
 
-void up_bob4(){
-  //Serial.println("upbob4");
-  digitalWrite(coil4_A,LOW);
-  digitalWrite(coil4_B,HIGH);
-  
+void abecedario::up_bob4()
+{
+  Serial.println("upbob4");
+  digitalWrite(_coil4_A, LOW);
+  digitalWrite(_coil4_B, HIGH);
 }
 
-void up_bob5(){
-  //Serial.println("upbob5");
-  digitalWrite(coil5_A,LOW);
-  digitalWrite(coil5_B,HIGH);
-
+void abecedario::up_bob5()
+{
+  Serial.println("upbob5");
+  digitalWrite(_coil5_A, LOW);
+  digitalWrite(_coil5_B, HIGH);
 }
 
-void up_bob6(){
-  //Serial.println("upbob6");
-  digitalWrite(coil6_A,LOW);
-  digitalWrite(coil6_B,HIGH);
-   
+void abecedario::up_bob6()
+{
+  Serial.println("upbob6");
+  digitalWrite(_coil6_A, LOW);
+  digitalWrite(_coil6_B, HIGH);
 }
 
 //***************************************BAJAR BOBINA**********************************************
-void down_bob1 (){
-  //Serial.println("downbob1");
-  digitalWrite(coil1_A,HIGH);
-  digitalWrite(coil1_B,LOW);
-
+void abecedario::down_bob1()
+{
+  Serial.println("downbob1");
+  digitalWrite(_coil1_A, HIGH);
+  digitalWrite(_coil1_B, LOW);
 }
 
-void down_bob2 (){
-  //Serial.println("downbob2");
-  digitalWrite(coil2_A,HIGH);
-  digitalWrite(coil2_B,LOW);
-  
+void abecedario::down_bob2()
+{
+  Serial.println("downbob2");
+  digitalWrite(_coil2_A, HIGH);
+  digitalWrite(_coil2_B, LOW);
 }
 
-void down_bob3 (){
-  //Serial.println("downbob3");
-  digitalWrite(coil3_A,HIGH);
-  digitalWrite(coil3_B,LOW);
- 
+void abecedario::down_bob3()
+{
+  Serial.println("downbob3");
+  digitalWrite(_coil3_A, HIGH);
+  digitalWrite(_coil3_B, LOW);
 }
 
-void down_bob4 (){
-  //Serial.println("downbob4");
-  digitalWrite(coil4_A,HIGH);
-  digitalWrite(coil4_B,LOW);
-  
-  
+void abecedario::down_bob4()
+{
+  Serial.println("downbob4");
+  digitalWrite(_coil4_A, HIGH);
+  digitalWrite(_coil4_B, LOW);
 }
 
-void down_bob5 (){
-  //Serial.println("downbob5");
-  digitalWrite(coil5_A,HIGH);
-  digitalWrite(coil5_B,LOW);
- 
-
+void abecedario::down_bob5()
+{
+  Serial.println("downbob5");
+  digitalWrite(_coil5_A, HIGH);
+  digitalWrite(_coil5_B, LOW);
 }
 
-void down_bob6 (){
-  //Serial.println("downbob6");
-  digitalWrite(coil6_A,HIGH);
-  digitalWrite(coil6_B,LOW);
-  
-  
+void abecedario::down_bob6()
+{
+  Serial.println("downbob6");
+  digitalWrite(_coil6_A, HIGH);
+  digitalWrite(_coil6_B, LOW);
 }
 
 //******************************APAGAR BOBINAS**************************************
-void off_coils(){
-  //Serial.println("off_coils");
-  digitalWrite(coil1_A,LOW);
-  digitalWrite(coil1_B,LOW);
+void abecedario::off_coils()
+{
+  Serial.println("off_coils");
+  digitalWrite(_coil1_A, LOW);
+  digitalWrite(_coil1_B, LOW);
 
-  digitalWrite(coil2_A,LOW);
-  digitalWrite(coil2_B,LOW);
+  digitalWrite(_coil2_A, LOW);
+  digitalWrite(_coil2_B, LOW);
 
-  digitalWrite(coil3_A,LOW);
-  digitalWrite(coil3_B,LOW);
+  digitalWrite(_coil3_A, LOW);
+  digitalWrite(_coil3_B, LOW);
 
-  digitalWrite(coil4_A,LOW);
-  digitalWrite(coil4_B,LOW);
+  digitalWrite(_coil4_A, LOW);
+  digitalWrite(_coil4_B, LOW);
 
-  digitalWrite(coil5_A,LOW);
-  digitalWrite(coil5_B,LOW);
+  digitalWrite(_coil5_A, LOW);
+  digitalWrite(_coil5_B, LOW);
 
-  digitalWrite(coil6_A,LOW);
-  digitalWrite(coil6_B,LOW);
+  digitalWrite(_coil6_A, LOW);
+  digitalWrite(_coil6_B, LOW);
 }
 
 ////////////////////////////////////BAJAR TODAS LAS BOBINAS//////////////////////////////////
 
-void down_coils (){
-  //Serial.println("down_coils");
+void abecedario::down_coils()
+{
+  Serial.println("down_coils");
 
-  digitalWrite(coil1_A,HIGH);
-  digitalWrite(coil1_B,LOW);
+  digitalWrite(_coil1_A, HIGH);
+  digitalWrite(_coil1_B, LOW);
 
-  digitalWrite(coil2_A,HIGH);
-  digitalWrite(coil2_B,LOW);
+  digitalWrite(_coil2_A, HIGH);
+  digitalWrite(_coil2_B, LOW);
 
-  digitalWrite(coil3_A,HIGH);
-  digitalWrite(coil3_B,LOW);
+  digitalWrite(_coil3_A, HIGH);
+  digitalWrite(_coil3_B, LOW);
 
-  digitalWrite(coil4_A,HIGH);
-  digitalWrite(coil4_B,LOW);
+  digitalWrite(_coil4_A, HIGH);
+  digitalWrite(_coil4_B, LOW);
 
-  digitalWrite(coil5_A,HIGH);
-  digitalWrite(coil5_B,LOW);
+  digitalWrite(_coil5_A, HIGH);
+  digitalWrite(_coil5_B, LOW);
 
-  digitalWrite(coil6_A,HIGH);
-  digitalWrite(coil6_B,LOW);
+  digitalWrite(_coil6_A, HIGH);
+  digitalWrite(_coil6_B, LOW);
 }
 
-void letraBraille()
+void abecedario::letra_A()
+{
+
+  Serial.println("A");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_B()
+{
+
+  Serial.println("B");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob3();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_C()
+{
+
+  Serial.println("C");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_D()
+{
+
+  Serial.println("D");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob4();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_E()
+{
+
+  Serial.println("E");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob4();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_F()
+{
+
+  Serial.println("F");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob3();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_G()
+{
+
+  Serial.println("G");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob3();
+  up_bob4();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_H()
+{
+
+  Serial.println("H");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob3();
+  up_bob4();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_I()
+{
+
+  Serial.println("I");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob2();
+  up_bob3();
+  delay(_tiempo);
+  off_coils();
+}
+void abecedario::letra_J()
+{
+
+  Serial.println("J");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob2();
+  up_bob3();
+  up_bob4();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_K()
+{
+
+  Serial.println("K");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_L()
+{
+
+  Serial.println("L");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob3();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_M()
+{
+
+  Serial.println("M");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_N()
+{
+
+  Serial.println("N");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_O()
+{
+
+  Serial.println("O");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_P()
+{
+
+  Serial.println("P");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob3();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_Q()
+{
+
+  Serial.println("Q");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob3();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_R()
+{
+
+  Serial.println("R");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob3();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+void abecedario::letra_S()
+{
+
+  Serial.println("S");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob2();
+  up_bob3();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+void abecedario::letra_T()
+{
+
+  Serial.println("T");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob2();
+  up_bob3();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+void abecedario::letra_U()
+{
+
+  Serial.println("U");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob5();
+  up_bob6();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_V()
+{
+
+  Serial.println("V");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob3();
+  up_bob5();
+  up_bob6();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_W()
+{
+
+  Serial.println("W");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob2();
+  up_bob3();
+  up_bob4();
+  up_bob6();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_X()
+{
+
+  Serial.println("X");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob5();
+  up_bob6();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_Y()
+{
+
+  Serial.println("Y");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob2();
+  up_bob4();
+  up_bob5();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letra_Z()
+{
+
+  Serial.println("Z");
+
+  down_coils();
+  delay(_tiempo);
+  off_coils();
+
+  up_bob1();
+  up_bob4();
+  up_bob5();
+  up_bob6();
+  delay(_tiempo);
+  off_coils();
+}
+
+void abecedario::letraBraille()
 {
   switch (letra)
   {

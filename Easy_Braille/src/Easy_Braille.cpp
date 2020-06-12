@@ -1,6 +1,9 @@
-#include <Arduino.h>
-#include <serial_mp3.h>
-#include <abecedario.h>
+#include "Arduino.h"
+#include "abecedario.h"
+//#include "serial_mp3.h"
+
+abecedario miabecedario(13,4,27,26,25,33,32,23,22,21,19,18);
+
 
 #define nexButton 5
 #define backButton 15
@@ -27,8 +30,6 @@
 #define tiempo 40
 
 
-
-
 void menu();
 void volOrchangue();
 void nextBack();
@@ -46,38 +47,19 @@ bool enterPressed = false;
 bool soloModeEnter = false;
 bool tutorModeEnter = false;
 
+
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  mp3.begin(9600);
+  //mp3.begin(9600);
 
-  sendCommand(CMD_SEL_DEV, DEV_TF);
-  sendMP3Command('r');
+  //sendCommand(CMD_SEL_DEV, DEV_TF);
+  //sendMP3Command('r');
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
   pinMode(enterButton, INPUT_PULLUP);
-  
-  pinMode(coil1_A, OUTPUT);
-  pinMode(coil1_B, OUTPUT);
-
-  pinMode(coil2_A, OUTPUT);
-  pinMode(coil2_B, OUTPUT);
-
-  pinMode(coil3_A, OUTPUT);
-  pinMode(coil3_B, OUTPUT);
-
-  pinMode(coil4_A, OUTPUT);
-  pinMode(coil4_B, OUTPUT);
-
-  pinMode(coil5_A, OUTPUT);
-  pinMode(coil5_B, OUTPUT);
-
-  pinMode(coil6_A, OUTPUT);
-  pinMode(coil6_B, OUTPUT);
-
-  letra_A ();
 
 }
 
@@ -140,7 +122,7 @@ void volOrchangue(){
       if (nexPressed)
       {
         letra++;
-        sendMP3Command('>');
+        //sendMP3Command('>');
         delay(500);
         //Serial.println("Envie >");
         timePressed = 0;
@@ -149,7 +131,7 @@ void volOrchangue(){
       else if (backPressed)
       {
         letra--;
-        sendMP3Command('<');
+        //sendMP3Command('<');
         delay(500);
         //Serial.println("Envie <");
         timePressed = 0;
@@ -160,7 +142,7 @@ void volOrchangue(){
     {
       if (nexPressed)
       {
-        sendMP3Command('+');
+        //sendMP3Command('+');
         delay(500);
         //Serial.println("Envie +");
         timePressed = 0;
@@ -168,7 +150,7 @@ void volOrchangue(){
       }
       else if (backPressed)
       {
-        sendMP3Command('-');
+        //sendMP3Command('-');
         delay(500);
         //Serial.println("Envie -");
         timePressed = 0;
@@ -262,7 +244,7 @@ void tutorMode()
     timeEnterPressed = 0;
     state = 1;
     enterPressed = false;
-    sendMP3Command('r');
+    //sendMP3Command('r');
     delay(500);
   }
 }
@@ -283,14 +265,14 @@ void soloMode()
     contador1 = millis() + 1000;
     Serial.println("Estas en modo solo"); // aqui deberiamos de mandor un audio para confirmar que estamos en modo solo
     soloModeEnter = true;
-    sendMP3Command('1');
+    //sendMP3Command('1');
   }
   if (timeEnterPressed >= 500)
   {
     timeEnterPressed = 0;
     state = 1;
     enterPressed = false;
-    sendMP3Command('r');
+    //sendMP3Command('r');
     delay(500);
   }
 
