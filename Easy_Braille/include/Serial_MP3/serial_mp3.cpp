@@ -11,6 +11,8 @@
 
 #include "serial_mp3.h"
 #include "Arduino.h"
+
+
  
 static int8_t Send_buf[8] = {0}; // Buffer for Send commands.  // BETTER LOCALLY
 static uint8_t ansbuf[10] = {0}; // Buffer for the answers.    // BETTER LOCALLY
@@ -20,10 +22,12 @@ String mp3Answer;           // Answer from the MP3.
 boolean autoResume = true;
 
 char c;
- 
-serial_mp3::serial_mp3(){}
- 
- 
+
+serial_mp3::serial_mp3()
+{
+  mp3.begin(9600);
+}
+
 /*********************************************************************/
 
 /********************************************************************************/
@@ -32,7 +36,7 @@ serial_mp3::serial_mp3(){}
 /*Return: String                                                                */
  
  
-String sbyte2hex(uint8_t b)
+String serial_mp3::sbyte2hex(uint8_t b)
 {
   String shex;
  
@@ -48,7 +52,7 @@ String sbyte2hex(uint8_t b)
 /*Parameter:-int8_t command                                                     */
 /*Parameter:-int16_ dat  parameter for the command                              */
  
-void sendCommand(int8_t command, int16_t dat)
+void serial_mp3::sendCommand(int8_t command, int16_t dat)
 {
   delay(20);
   Send_buf[0] = 0x7e;   //
@@ -80,7 +84,7 @@ void sendCommand(int8_t command, int16_t dat)
 /*Parameter:- uint8_t b. void.                                                  */
 /*Return: String. If the answer is well formated answer.                        */
  
-String sanswer(void)
+String serial_mp3::sanswer(void)
 {
   uint8_t i = 0;
   String mp3answer = "";
@@ -112,7 +116,7 @@ String sanswer(void)
 /*Parameter: c. Code for the MP3 Command, 'h' for help.                                                                                                         */
 /*Return:  void                                                                */
  
-void sendMP3Command(char c) {
+void serial_mp3::sendMP3Command(char c) {
   switch (c) {
     case '?':
     case 'h':
@@ -247,7 +251,7 @@ void sendMP3Command(char c) {
 /*Parameter:-void                                                               */
 /*Return: The                                                  */
  
-String decodeMP3Answer() {
+String serial_mp3::decodeMP3Answer() {
   String decodedMP3Answer = "";
  
   decodedMP3Answer += sanswer();

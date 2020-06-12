@@ -4,7 +4,7 @@
 #include "serial_mp3.h"
 
 abecedario miabecedario;
-serial_mp3 miserial_mp3;
+serial_mp3 miMp3;
 
 
 #define nexButton 5
@@ -38,14 +38,12 @@ void setup()
   Serial.begin(9600);
   //mp3.begin(9600);
 
-  //sendCommand(CMD_SEL_DEV, DEV_TF);
-  //sendMP3Command('r');
+  miMp3.sendCommand(CMD_SEL_DEV, DEV_TF);
+  miMp3.sendMP3Command('r');
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
   pinMode(enterButton, INPUT_PULLUP);
-
-  miabecedario.letra_A();
   
 }
 
@@ -108,7 +106,7 @@ void volOrchangue(){
       if (nexPressed)
       {
         letra++;
-        //sendMP3Command('>');
+        miMp3.sendMP3Command('>');
         delay(500);
         //Serial.println("Envie >");
         timePressed = 0;
@@ -117,7 +115,7 @@ void volOrchangue(){
       else if (backPressed)
       {
         letra--;
-        //sendMP3Command('<');
+        miMp3.sendMP3Command('<');
         delay(500);
         //Serial.println("Envie <");
         timePressed = 0;
@@ -128,7 +126,7 @@ void volOrchangue(){
     {
       if (nexPressed)
       {
-        //sendMP3Command('+');
+        miMp3.sendMP3Command('+');
         delay(500);
         //Serial.println("Envie +");
         timePressed = 0;
@@ -136,7 +134,7 @@ void volOrchangue(){
       }
       else if (backPressed)
       {
-        //sendMP3Command('-');
+        miMp3.sendMP3Command('-');
         delay(500);
         //Serial.println("Envie -");
         timePressed = 0;
