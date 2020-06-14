@@ -591,15 +591,90 @@ void abecedario::letra_Z()
   off_coils();
 }
 
-void abecedario::letraBraille()
+void abecedario::letraBraille(int letra)
 {
-  //switch (letra)
-  //{
-  //case 1:
-    //letra_A();
-    //break;
+  switch (letra)
+  {
+  case 1:
+    letra_A();
+    break;
+  case 2:
+    letra_B();
+    break;
+  case 3:
+    letra_C();
+    break;
+  case 4:
+    letra_D();
+    break;
+  case 5:
+    letra_E();
+    break;
+  case 6:
+    letra_F();
+    break;
+  case 7:
+    letra_G();
+    break;
+  case 8:
+    letra_H();
+    break;
+  case 9:
+    letra_I();
+    break;
+  case 10:
+    letra_J();
+    break;
+  case 11:
+    letra_K();
+    break;
+  case 12:
+    letra_L();
+    break;
+  case 13:
+    letra_M();
+    break;
+  case 14:
+    letra_N();
+    break;
+  case 15:
+    letra_O();
+    break;
+  case 16:
+    letra_P();
+    break;
+  case 17:
+    letra_Q();
+    break;
+  case 18:
+    letra_R();
+    break;
+  case 19:
+    letra_S();
+    break;
+  case 20:
+    letra_T();
+    break;
+  case 21:
+    letra_U();
+    break;
+  case 22:
+    letra_V();
+    break;
+  case 23:
+    letra_W();
+    break;
+  case 24:
+    letra_X();
+    break;
+  case 25:
+    letra_Y();
+    break;
+  case 26:
+    letra_Z();
+    break;
 
-  //default:
-    //break;
-  //}
+  default:
+    break;
+  }
 }

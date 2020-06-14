@@ -28,7 +28,7 @@ class abecedario
 public:
     abecedario();
 
-    void letraBraille();
+    void letraBraille(int letra);
 
     void down_coils();
     void off_coils();

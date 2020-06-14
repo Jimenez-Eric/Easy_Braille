@@ -26,7 +26,7 @@ int nexButtonPressed = 1;
 int backButtonPressed = 1;
 int timeEnterPressed = 0;
 int state = 1;
-int letra = 1;
+int letra = 0;
 bool enterPressed = false;
 bool soloModeEnter = false;
 bool tutorModeEnter = false;
@@ -106,7 +106,12 @@ void volOrchangue(){
       if (nexPressed)
       {
         letra++;
+        if(letra >= 27)
+        {
+          letra = 1;
+        }
         miMp3.sendMP3Command('>');
+        miabecedario.letraBraille(letra);
         delay(500);
         //Serial.println("Envie >");
         timePressed = 0;
@@ -115,7 +120,12 @@ void volOrchangue(){
       else if (backPressed)
       {
         letra--;
+        if(letra <= 0)
+        {
+          letra = 26;
+        }
         miMp3.sendMP3Command('<');
+        miabecedario.letraBraille(letra);
         delay(500);
         //Serial.println("Envie <");
         timePressed = 0;
@@ -183,7 +193,7 @@ void menu()
       {
         state = 3;
         enterPressed = true;
-        letra = 1;
+        letra = 0;
         break;
       }
     }
@@ -249,14 +259,14 @@ void soloMode()
     contador1 = millis() + 1000;
     Serial.println("Estas en modo solo"); // aqui deberiamos de mandor un audio para confirmar que estamos en modo solo
     soloModeEnter = true;
-    //sendMP3Command('1');
+    miMp3.sendMP3Command('1');
   }
   if (timeEnterPressed >= 500)
   {
     timeEnterPressed = 0;
     state = 1;
     enterPressed = false;
-    //sendMP3Command('r');
+    miMp3.sendMP3Command('r');
     delay(500);
   }
 
