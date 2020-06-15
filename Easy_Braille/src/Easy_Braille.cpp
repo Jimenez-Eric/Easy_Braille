@@ -3,6 +3,7 @@
 #include "abecedario.h"
 #include "serial_mp3.h"
 #include <WiFi.h>
+#include <ESPmDNS.h>
 
 abecedario miabecedario;
 serial_mp3 miMp3;
@@ -54,10 +55,10 @@ void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  //mp3.begin(9600);
 
-  miMp3.sendCommand(CMD_SEL_DEV, DEV_TF);
   miMp3.sendMP3Command('r');
+  //miMp3.sendCommand(CMD_SEL_DEV, DEV_TF);
+  
 
   pinMode(nexButton, INPUT_PULLUP);
   pinMode(backButton, INPUT_PULLUP);
@@ -77,7 +78,19 @@ void setup()
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  server.begin();
+  if (!MDNS.begin("Easy_Braille1")) {
+      
+    }
+   else{
+   server.begin();
+   MDNS.addService("http", "tcp", 80); 
+   }
+
+   miMp3.sendMP3Command('3');
+   miMp3.sendMP3Command('p');
+   delay(5000);
+   
+  
   
 }
 
@@ -353,104 +366,119 @@ void servidor()
             }
             else if (header.indexOf("GET /B/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra B");
+               miabecedario.letra_B();
             }
             else if (header.indexOf("GET /C/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra C");
+               miabecedario.letra_C();
             }
             else if (header.indexOf("GET /D/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra D");
+               miabecedario.letra_D();
             }
             else if (header.indexOf("GET /E/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra E");
+               miabecedario.letra_E();
             }
             else if (header.indexOf("GET /F/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra F");
+               miabecedario.letra_F();
             }
             else if (header.indexOf("GET /G/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra G");
+               miabecedario.letra_G();
             }
             else if (header.indexOf("GET /H/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra H");
+               miabecedario.letra_H();
             }
             else if (header.indexOf("GET /I/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra I");
+               miabecedario.letra_I();
             }
             else if (header.indexOf("GET /J/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra J");
+               miabecedario.letra_J();
             }
             else if (header.indexOf("GET /K/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra K");
+               miabecedario.letra_K();
 
             }
             else if (header.indexOf("GET /L/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra L");
+               miabecedario.letra_L();
             }
             else if (header.indexOf("GET /M/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra M");
+               miabecedario.letra_M();
             }
             else if (header.indexOf("GET /N/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra N");
+               miabecedario.letra_N();
             }
             else if (header.indexOf("GET /O/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
-            }
-            else if (header.indexOf("GET /P/on") >= 0)
-            {
-              Serial.println("GPIO 27 on");
-            }
-            else if (header.indexOf("GET /Q/on") >= 0)
-            {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra O");
+               miabecedario.letra_O();
             }
             else if (header.indexOf("GET /R/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra R");
+               miabecedario.letra_R();
             }
             else if (header.indexOf("GET /S/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra S");
+               miabecedario.letra_S();
             }
             else if (header.indexOf("GET /T/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra T");
+               miabecedario.letra_T();
             }
             else if (header.indexOf("GET /U/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra U");
+               miabecedario.letra_U();
             }
             else if (header.indexOf("GET /V/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+              Serial.println("Server letra V");
+               miabecedario.letra_V();
             }
             else if (header.indexOf("GET /W/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+              Serial.println("Server letra W");
+               miabecedario.letra_W();
             }
             else if (header.indexOf("GET /X/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+               miabecedario.letra_X();
+              Serial.println("Server letra X");
             }
             else if (header.indexOf("GET /Y/on") >= 0)
             {
-              Serial.println("GPIO 2 on");
+               miabecedario.letra_Y();
+              Serial.println("Server letra Y");
             }
             else if (header.indexOf("GET /Z/on") >= 0)
             {
-              Serial.println("GPIO 27 on");
+               miabecedario.letra_Z();
+              Serial.println("Server letra Z");
             }
 
             // Display the HTML web page
@@ -458,7 +486,7 @@ void servidor()
             client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
             client.println("<link rel=\"icon\" href=\"data:,\">");
             // CSS to style the on/off buttons
-            // Feel free to change the background-color and font-size attributes to fit your preferences
+            // Feel free to change the backg       round-color and font-size attributes to fit your preferences
             client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
             client.println(".button { background-color: #4CAF50; border: none; color: white; padding: 16px 40px;");
             client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");

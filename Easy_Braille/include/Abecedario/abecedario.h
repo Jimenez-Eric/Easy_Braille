@@ -4,20 +4,20 @@
 #define abecedario_h
 #include "Arduino.h"
 
-#define Pin_coil1_A 33
-#define Pin_coil1_B 32
+#define Pin_coil1_A 32
+#define Pin_coil1_B 33
 
-#define Pin_coil2_A 18
-#define Pin_coil2_B 4
+#define Pin_coil2_A 4
+#define Pin_coil2_B 18
 
 #define Pin_coil3_A 25
 #define Pin_coil3_B 26
 
-#define Pin_coil4_A 21
-#define Pin_coil4_B 19
+#define Pin_coil4_A 19
+#define Pin_coil4_B 21
  
-#define Pin_coil5_A 27
-#define Pin_coil5_B 13
+#define Pin_coil5_A 13
+#define Pin_coil5_B 27
 
 #define Pin_coil6_A 23
 #define Pin_coil6_B 22

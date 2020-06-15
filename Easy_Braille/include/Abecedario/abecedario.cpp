@@ -36,7 +36,7 @@ abecedario::abecedario()
 }
 
 //int letra;
-int _tiempo = 50;
+int _tiempo = 80;
 
 
 
