@@ -34,10 +34,11 @@ bool enterPressed = false;
 bool soloModeEnter = false;
 bool tutorModeEnter = false;
 bool iniciarServidor = false;
+bool fistStar = true;
 
 // Replace with your network credentials
-const char* ssid = "TPlay";
-const char* password = "QLA620olw123987";
+const char* ssid = "**********";
+const char* password = "***********";
 // Set web server port number to 80
 WiFiServer server(80);
 // Variable to store the HTTP request
@@ -56,7 +57,7 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(9600);
 
-  miMp3.sendMP3Command('r');
+  
   //miMp3.sendCommand(CMD_SEL_DEV, DEV_TF);
   
 
@@ -86,9 +87,8 @@ void setup()
    MDNS.addService("http", "tcp", 80); 
    }
 
-   miMp3.sendMP3Command('3');
-   miMp3.sendMP3Command('p');
-   delay(5000);
+   miMp3.sendMP3Command('r');
+   miMp3.sendMP3Command('2');
    
   
   
@@ -207,14 +207,22 @@ void menu()
   soloModeEnter = false;
   tutorModeEnter = false;
 
+  if(fistStar)
+  {
+    
+    fistStar = false;
+    delay(3000);
+  }
+
   readButtons();
   while (nexButtonPressed == 1 && backButtonPressed == 1)
   {
     readButtons();
     if (millis() > contador3)
     {
-      contador3 = millis() + 1000;
+      contador3 = millis() + 10000;
       Serial.println("Estas en la selecion de modo tutor");
+      miMp3.sendMP3Command('3');
     }
     if (enterButtonPressed == 0)
     {
@@ -233,7 +241,8 @@ void menu()
       readButtons();
       if (millis() > contador3)
       {
-        contador3 = millis() + 1000;
+        contador3 = millis() + 10000;
+        miMp3.sendMP3Command('4');
         Serial.println("Estas en la selecion de modo solo");
       }
       if (enterButtonPressed == 0)
@@ -279,6 +288,7 @@ void tutorMode()
   if (!tutorModeEnter)
   {
     Serial.println("Estoy en modo tutor");
+    miMp3.sendMP3Command('5');
     tutorModeEnter = true;
     iniciarServidor = true;
   }
@@ -309,7 +319,9 @@ void soloMode()
   {
     contador1 = millis() + 1000;
     Serial.println("Estas en modo solo"); // aqui deberiamos de mandor un audio para confirmar que estamos en modo solo
+    miMp3.sendMP3Command('6');
     soloModeEnter = true;
+    delay(11000);
     miMp3.sendMP3Command('1');
   }
   if (timeEnterPressed >= 500)
